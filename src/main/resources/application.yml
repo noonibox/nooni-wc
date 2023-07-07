@@ -1,6 +1,16 @@
 spring:
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/moritools_dev
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    url: jdbc:log4jdbc:postgresql://localhost:5432/moritools_dev
     username: moritools
     password: 1234
+  flyway:
+    baseline-on-migrate: true
+mybatis:
+  mapper-locations: mybatis/mapper/**/*.xml
+logging:
+  level:
+    root: info
+    org.springframework.web: info
+    org.springframework.boot.autoconfigure: info
+    org.mybatis: info

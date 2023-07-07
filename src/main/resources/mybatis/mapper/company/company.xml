@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.moritools.wc.repository.CompanyRepository">
+    <select id="selectOneCompany" parameterType="com.moritools.wc.model.Company" resultType="com.moritools.wc.model.Company">
+        select
+            company_seq,
+            up_company_seq,
+            name,
+            company_tp,
+            company_state,
+            adj_rate,
+            remark,
+            create_at,
+            update_at
+        from company
+        <where>
+            <if test="company_seq != null and company_seq != ''">
+                company_seq = #{company_seq}
+            </if>
+            <if test="up_company_seq != null and up_company_seq != ''">
+                up_company_seq = #{up_company_seq}
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name}
+            </if>
+            <if test="company_tp != null and company_tp != ''">
+                company_tp = #{company_tp}
+            </if>
+            <if test="company_state != null and company_state != ''">
+                company_state = #{company_state}
+            </if>
+            <if test="remark != null and remark != ''">
+                remark = #{remark}
+            </if>
+            <if test="create_at != null and create_at != ''">
+                create_at = #{create_at}
+            </if>
+            <if test="update_at != null and update_at != ''">
+                update_at = #{update_at}
+            </if>
+        </where>
+        limit 1
+    </select>
+</mapper>
