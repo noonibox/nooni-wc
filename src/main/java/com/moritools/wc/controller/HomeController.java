@@ -15,10 +15,10 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
-//        Company company = companyService.selectOneCompany(null);
-//        if(company == null) {
-//            return "redirect:/company/create";
-//        }
+        Company company = companyService.selectOneCompany(null);
+        if(company == null) {
+            return "redirect:/company/create";
+        }
 
         return "index";
     }
