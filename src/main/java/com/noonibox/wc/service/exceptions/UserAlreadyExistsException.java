@@ -12,11 +12,4 @@ public class UserAlreadyExistsException extends LoginException {
     public UserAlreadyExistsException(String email) {
         super(email);
     }
-
-
-    @Override
-    public String getLocalizedMessage() {
-        // 로케일 설정
-        return message.getString("error.login.email-already-taken");
-    }
 }
