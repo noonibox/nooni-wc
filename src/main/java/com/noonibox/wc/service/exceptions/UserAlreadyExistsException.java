@@ -1,13 +1,22 @@
 package com.noonibox.wc.service.exceptions;
 
-import org.springframework.security.core.AuthenticationException;
+import java.util.ResourceBundle;
 
-public class UserAlreadyExistsException extends AuthenticationException {
-    public UserAlreadyExistsException(String msg, Throwable cause) {
-        super(msg, cause);
+public class UserAlreadyExistsException extends LoginException {
+    ResourceBundle message = ResourceBundle.getBundle("i18n.messages");
+
+    public UserAlreadyExistsException(String email, Throwable cause) {
+        super(email, cause);
     }
 
-    public UserAlreadyExistsException(String msg) {
-        super(msg);
+    public UserAlreadyExistsException(String email) {
+        super(email);
+    }
+
+
+    @Override
+    public String getLocalizedMessage() {
+        // 로케일 설정
+        return message.getString("error.login.email-already-taken");
     }
 }

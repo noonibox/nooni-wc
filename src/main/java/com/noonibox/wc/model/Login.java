@@ -28,7 +28,7 @@ public class Login {
     /**
      * 이메일(계정) 인증 여부
      */
-    String verified;
+    Boolean verified;
 
     /**
      * 인증일자

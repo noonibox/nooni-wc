@@ -4,6 +4,7 @@ import com.noonibox.wc.model.Login;
 import com.noonibox.wc.repository.LoginRepository;
 import com.noonibox.wc.service.exceptions.UserAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class LoginService {
     private final LoginRepository loginRepository;
+    private final PasswordEncoder passwordEncoder;
     /**
      * 로그인을 생성한다.
      * 이미 로그인이 존재한다면, 예외를 던진다.
@@ -25,6 +27,12 @@ public class LoginService {
             throw new UserAlreadyExistsException(String.format("User already exists [%s]", login.getEmail()));
         }
 
-        return -1;
+        Login newLogin = Login.builder()
+                .email(login.getEmail())
+                .password(passwordEncoder.encode(login.getPassword()))
+                .verified(false)
+                .build();
+
+        return loginRepository.insertLogin(newLogin);
     }
 }

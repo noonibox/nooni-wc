@@ -2,5 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.noonibox.wc.repository.LoginRepository">
+    <select id="selectLoginOne" parameterType="com.noonibox.wc.model.Login" resultType="com.noonibox.wc.model.Login">
+        select
+            id,
+            email,
+            password,
+            verified,
+            verified_at,
+            create_at,
+            update_at
+        from login
+        where email = #{email}
+        limit 1
+    </select>
 
+    <insert id="insertLogin" parameterType="com.noonibox.wc.model.Login">
+        insert into login
+        (
+            email,
+            password,
+            verified,
+            verified_at,
+            create_at,
+            update_at
+        )
+        values
+        (
+            #{email},
+            #{password},
+            #{verified},
+            #{verifiedAt},
+            now(),
+            now()
+        )
+    </insert>
 </mapper>

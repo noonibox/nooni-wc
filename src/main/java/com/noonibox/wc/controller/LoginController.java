@@ -61,7 +61,7 @@ public class LoginController {
 //        }
 //        long l = memberService.insertMember(member);
 
-        return "redirect:/login";
+        return String.format("redirect:/login?createdId=%s", createdId);
     }
 
     @GetMapping
