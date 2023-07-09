@@ -1,3 +1,7 @@
+server:
+  error:
+    include-exception: true # 오류 응답에 exception의 내용을 포함할지 여부
+    include-stacktrace: always # 오류 응답에 stacktrace 내용을 포함할 지 여부
 spring:
   datasource:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
@@ -13,6 +17,11 @@ mybatis:
 logging:
   level:
     root: info
-    org.springframework.web: info
-    org.springframework.boot.autoconfigure: info
-    org.mybatis: info
+    jdbc: off
+    jdbc.connection: off
+    jdbc.sqlonly: debug
+    jdbc.sqltiming: off
+    jdbc.audit: off
+    jdbc.resultset: off
+    jdbc.resultsettable: debug
+    com.noonibox.wc: trace
